@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+const colors = require('tailwindcss/colors')
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}",],
   theme: {
@@ -12,7 +13,8 @@ module.exports = {
       dark: {
         elements: 'hsl(209, 23%, 22%)',
         bg: 'hsl(207, 26%, 17%)'
-      }
+      },
+      ...colors
     }
   },
   plugins: [],
