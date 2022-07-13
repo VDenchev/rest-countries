@@ -1,19 +1,19 @@
 import React from "react"
 
-const Card = () => {
+const Card = ({ flag, name, population, region, capital }) => {
 	return (
 		<section className="bg-white shadow-sm w-[264px] h-[336px] rounded-md overflow-hidden">
-			<img src="https://via.placeholder.com/264x160" alt="" />
+			<img src={flag} alt="" className="max-h-40 w-full shadow-sm" />
 			<div className="p-6 text-light-text">
-				<h2 className="font-extrabold text-lg pb-4">Germany</h2>
+				<h2 className="font-extrabold text-lg pb-4">{name}</h2>
 				<p className="text-sm font-semibold pb-2">
-					Population: <span className="font-light">81,770,900</span>
+					Population: <span className="font-light">{population}</span>
 				</p>
 				<p className="text-sm font-semibold pb-2">
-					Region: <span className="font-light">Europe</span>
+					Region: <span className="font-light">{region}</span>
 				</p>
 				<p className="text-sm font-semibold pb-2">
-					Capital: <span className="font-light">Berlin</span>
+					Capital: <span className="font-light">{capital}</span>
 				</p>
 			</div>
 		</section>
