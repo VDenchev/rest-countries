@@ -18,6 +18,7 @@ const Countries = () => {
 	const mapCountries = (countries) => {
 		return countries.map((country) => (
 			<Card
+				key={country.name.common}
 				flag={country.flags.png}
 				name={country.name.common}
 				population={country.population}
