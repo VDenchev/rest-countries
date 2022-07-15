@@ -29,7 +29,7 @@ const Country = () => {
 				<img
 					src={countryData?.flags?.svg}
 					alt=""
-					className="w-full sm:w-[40vw]"
+					className="w-full sm:max-h-[30vw] sm:w-[40vw]"
 				/>
 				<div className="text-light-text mt-11 lg:flex-1">
 					<h2 className="text-[clamp(1.38rem,0.94vw+1.15rem,2rem)] mb-6 font-extrabold">
@@ -46,7 +46,7 @@ const Country = () => {
 										.join(", ")
 								}
 							/>
-							<Detail name="Population" value={countryData?.population} />
+							<Detail name="Population" value={countryData?.population.toLocaleString()} />
 							<Detail name="Region" value={countryData?.region} />
 							<Detail name="Sub Region" value={countryData?.subregion} />
 							<Detail name="Capital" value={countryData?.capital} />
