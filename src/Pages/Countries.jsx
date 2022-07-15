@@ -34,7 +34,7 @@ const Countries = () => {
 			<div className="flex flex-col justify-between items-center sm:flex-row gap-10 mb-[clamp(2rem,1.5vw+1.65rem,3rem)]">
 				<SearchBar />
 			</div>
-			<div className="flex flex-wrap justify-center sm:justify-start gap-10 md:gap-16">
+			<div className="grid grid-cols-[repeat(auto-fit,minmax(264px,1fr))] gap-5 md:gap-10 place-items-center">
 				{cards}
 			</div>
 		</>

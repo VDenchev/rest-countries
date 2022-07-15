@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 const Card = ({ flag, name, population, region, capital }) => {
 	return (
-		<section className="bg-white shadow-sm w-[264px] h-[336px] rounded-md overflow-hidden">
+		<section className="bg-white shadow-sm w-[264px] h-[336px] rounded-md overflow-hidden flex flex-col justify-between">
 			<Link to={`./${name}`}>
 				<img src={flag} alt="" className="max-h-40 w-full shadow-sm" />
 			</Link>
