@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react"
 import Card from "../Components/Card.jsx"
 import SearchBar from "../Components/SearchBar.jsx"
+import Spinner from "../Components/Spinner.jsx"
 
 const Countries = () => {
 	const [countries, setCountries] = useState([])
-
+	const [isLoading, setIsLoading] = useState(true)
 	useEffect(() => {
 		const fetchCountries = async () => {
 			const data = await fetch("https://restcountries.com/v3.1/all")
 			const json = await data.json()
 			setCountries(json)
+			setIsLoading(false)
 			console.log(json)
 		}
 		fetchCountries().catch(console.error)
@@ -35,7 +37,7 @@ const Countries = () => {
 				<SearchBar />
 			</div>
 			<div className="grid grid-cols-[repeat(auto-fit,minmax(264px,1fr))] gap-5 md:gap-10 place-items-center">
-				{cards}
+				{isLoading ? <Spinner width={70} /> : cards}
 			</div>
 		</>
 	)
