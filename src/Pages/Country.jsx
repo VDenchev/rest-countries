@@ -37,7 +37,7 @@ const Country = () => {
 			setIsLoading(false)
 		}
 		getBorderCountries().catch(console.error)
-	}, [])
+	}, [params])
 	//TODO get border country names from api https://restcountries.com/v3.1/alpha?codes=col,pe,at
 	console.log(borderNames)
 	return (
@@ -114,9 +114,15 @@ const Country = () => {
 							name="Border Countries"
 							value={
 								<div className="flex flex-wrap lg:inline-flex mt-6 lg:ml-2 gap-3">
-									<Button to="/">qedsd</Button>
-									<Button to="/">qedsd</Button>
-									<Button to="/">qedsd</Button>
+									{isLoading ? (
+										<Spinner width={50} />
+									) : (
+										borderNames?.map((name) => (
+											<Button key={name} to={`/countries/${name}`}>
+												{name}
+											</Button>
+										))
+									)}
 								</div>
 							}
 						/>
