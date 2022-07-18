@@ -21,7 +21,11 @@ const Countries = () => {
 		return countries.map((country) => (
 			<Card
 				key={country.name.common}
-				flag={country.flags.png}
+				flag={
+					country.name.common === "Nepal"
+						? country.flags.svg
+						: country.flags.png
+				}
 				name={country.name.common}
 				population={country.population}
 				region={country.region}

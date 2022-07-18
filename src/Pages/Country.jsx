@@ -16,7 +16,7 @@ const Country = () => {
 			const data = await fetch(
 				`https://restcountries.com/v3.1/name/${params.countryName}?fullText=true`
 			)
-			console.log(data)
+
 			const json = await data.json()
 			const obj = await json.at(0)
 			setCountryData(obj)
@@ -29,7 +29,7 @@ const Country = () => {
 			const codes = await country.borders
 
 			const data = await fetch(
-				`https://restcountries.com/v3.1/alpha?codes=${codes.join(",")}`
+				`https://restcountries.com/v3.1/alpha?codes=${codes?.join(",")}`
 			)
 			const json = await data.json()
 			const names = await json.map((country) => country.name.common)
@@ -38,8 +38,7 @@ const Country = () => {
 		}
 		getBorderCountries().catch(console.error)
 	}, [params])
-	//TODO get border country names from api https://restcountries.com/v3.1/alpha?codes=col,pe,at
-	console.log(borderNames)
+
 	return (
 		<div className="pt-[clamp(1rem,1.5vw+0.65rem,2rem)]">
 			<Back to="/">Back</Back>
@@ -115,7 +114,7 @@ const Country = () => {
 							value={
 								<div className="flex flex-wrap lg:inline-flex mt-6 lg:ml-2 gap-3">
 									{isLoading ? (
-										<Spinner width={50} />
+										<Spinner width={20} />
 									) : (
 										borderNames?.map((name) => (
 											<Button key={name} to={`/countries/${name}`}>
