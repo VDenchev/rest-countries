@@ -6,7 +6,9 @@ import Detail from "../Components/Detail.jsx"
 import Spinner from "../Components/Spinner.jsx"
 
 const Country = () => {
+	let lol
 	const [countryData, setCountryData] = useState()
+	const [borderNames, setBorderNames] = useState()
 	const [isLoading, setIsLoading] = useState(true)
 	const params = useParams()
 	useEffect(() => {
@@ -19,11 +21,25 @@ const Country = () => {
 			const obj = await json.at(0)
 			setCountryData(obj)
 			setIsLoading(false)
+			return await obj
 		}
-		getCountryData().catch(console.error)
+
+		const getBorderCountries = async () => {
+			const country = await getCountryData().catch(console.error)
+			const codes = await country.borders
+
+			const data = await fetch(
+				`https://restcountries.com/v3.1/alpha?codes=${codes.join(",")}`
+			)
+			const json = await data.json()
+			const names = await json.map((country) => country.name.common)
+			setBorderNames(names)
+			setIsLoading(false)
+		}
+		getBorderCountries().catch(console.error)
 	}, [])
 	//TODO get border country names from api https://restcountries.com/v3.1/alpha?codes=col,pe,at
-	console.log(countryData)
+	console.log(borderNames)
 	return (
 		<div className="pt-[clamp(1rem,1.5vw+0.65rem,2rem)]">
 			<Back to="/">Back</Back>
