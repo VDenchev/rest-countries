@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import Back from "../Components/Back.jsx"
 import Button from "../Components/Button.jsx"
 import Detail from "../Components/Detail.jsx"
 import Spinner from "../Components/Spinner.jsx"
 
 const Country = () => {
-	let lol
+	const navigate = useNavigate()
 	const [countryData, setCountryData] = useState()
 	const [borderNames, setBorderNames] = useState()
 	const [isLoading, setIsLoading] = useState(true)
@@ -41,7 +41,7 @@ const Country = () => {
 
 	return (
 		<div className="pt-[clamp(1rem,1.5vw+0.65rem,2rem)]">
-			<Back to="/">Back</Back>
+			<Back handleClick={() => navigate(-1)}>Back</Back>
 			<div className="sm:flex sm:gap-[10%] sm:items-center mt-[clamp(4rem,1.5vw+3.65rem,5rem)]">
 				{isLoading ? (
 					<div className="w-full h-60 sm:max-h-[30vw] sm:w-[40vw] flex items-center justify-center">
@@ -109,22 +109,22 @@ const Country = () => {
 						</>
 					)}
 					<div>
-						<Detail
-							name="Border Countries"
-							value={
-								<div className="flex flex-wrap lg:inline-flex mt-6 lg:ml-2 gap-3">
-									{isLoading ? (
-										<Spinner width={20} />
-									) : (
-										borderNames?.map((name) => (
+						{isLoading ? (
+							<Spinner width={20} />
+						) : (
+							<Detail
+								name="Border Countries"
+								value={
+									<div className="flex flex-wrap lg:inline-flex mt-6 lg:ml-2 gap-3">
+										{borderNames?.map((name) => (
 											<Button key={name} to={`/countries/${name}`}>
 												{name}
 											</Button>
-										))
-									)}
-								</div>
-							}
-						/>
+										))}
+									</div>
+								}
+							/>
+						)}
 					</div>
 				</div>
 			</div>
